@@ -37,6 +37,15 @@
       thermostat.switchPowerSavingModeOn();
       expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
+    it('has a reset mode', function() {
+      for (var i = 0; i < 5; i++) {
+        thermostat.up();
+      }
+      thermostat.resetTemperature();
+
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
+    });
+
 
     describe('when power saving mode is ON', function() {
       it('has a maximum temperature of 25 degrees', function() {
