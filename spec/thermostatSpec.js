@@ -38,4 +38,23 @@
       expect(thermostat.isPowerSavingModeOn()).toBe(true);
     });
 
+    describe('when power saving mode is ON', function() {
+      it('has a maximum temperature of 25 degrees', function() {
+        for ( var i = 1; i < 6; i++) {
+          thermostat.up();
+        }
+        expect(thermostat.getCurrentTemperature()).toEqual(25);
+      });
+    });
+
+    describe('when power saving mode in OFF', function() {
+      it('has a maximum temperature of 32', function (){
+       thermostat.switchPowerSavingModeOff();
+       for ( var i = 1; i < 13; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(32);
+      });
+    });
+
 });
