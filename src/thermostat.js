@@ -8,6 +8,7 @@ class Thermostat {
     this.powerSavingMode = true;
     this.MAX_LIMIT_PSM_ON = 25;
     this.MAX_LIMIT_PSM_OFF = 32;
+    this.MEDIUM_ENERGY_USAGE_LIMIT = 18;
   }
   getCurrentTemperature() {
     return this.temperature;
@@ -43,6 +44,18 @@ class Thermostat {
     if (this.isPowerSavingModeOn() === false) {
       return this.temperature === this.MAX_LIMIT_PSM_OFF;
     }
+
     return this.temperature === this.MAX_LIMIT_PSM_ON;
+  }
+
+  energyUsage() {
+    if (this.temperature < this.MEDIUM_ENERGY_USAGE_LIMIT) {
+      return 'low-usage';
     }
+    if (this.temperature >= this.MEDIUM_ENERGY_USAGE_LIMIT && this.temperature <= this.MAX_LIMIT_PSM_ON) {
+      return 'medium-usage';
+    }
+    return 'high-usage';
+  }
+
 };
