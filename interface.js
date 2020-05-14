@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
   var thermostat = new Thermostat();
   updateTemperature();
 
@@ -33,4 +34,21 @@ $(document).ready(function() {
     $('#temperature').text(thermostat.temperature);
     $('#temperature').attr('class', thermostat.energyUsage());
   }
+
+
+  $('#current-city').change(function() {
+    var city = $('#current-city').val();                                       
+    $.get('http://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=6363c4f98af6f295b3f9173565b91b73&units=metric', function(data) {
+      $('#current-temperature').text(data.main.temp)
+    })
+  })
+
+  // function displayWeather(city) {
+  //   var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city;
+  //   var token = '&appid=6363c4f98af6f295b3f9173565b91b73';
+  //   var units = '&units= metric';
+  //   $.get(url + token + units, function(data){
+  //     $('#current-temperature').text(data.main.temp);
+  //   })
+  // }
 });
